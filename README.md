@@ -12,3 +12,5 @@
        #### touch src/routes/auth.js
        #### touch src/routes/posts.js
        #### touch src/routes/comments.js
+
+#### 4. desarrollo de la actividad.       
