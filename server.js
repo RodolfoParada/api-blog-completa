@@ -9,6 +9,10 @@ const authRoutes = require('./src/routes/auth');
 const postsRoutes = require('./src/routes/posts');
 const commentsRoutes = require('./src/routes/comments');
 
+
+const adminRoutes = require('./src/routes/admin');
+const categoryRoutes = require('./src/routes/categories');
+
 // Crear aplicación
 const app = express();
 
@@ -89,6 +93,10 @@ app.get('/api/docs', (req, res) => {
     }
   });
 });
+
+app.use('/api/admin', adminRoutes);
+app.use('/api', categoryRoutes);
+
 
 app.get('/', (req, res) => {
   res.send(`

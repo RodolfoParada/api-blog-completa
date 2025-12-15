@@ -21,3 +21,21 @@ exports.createComment = (req, res) => {
     comments.push(newComment);
     res.status(201).json(newComment);
 };
+
+
+// src/controllers/commentsController.js (Extensión)
+const emailService = require('../utils/emailService');
+
+exports.approveComment = async (req, res) => {
+    // 1. Simulación: Encontrar y marcar el comentario como aprobado en la DB
+    const commentId = parseInt(req.params.id);
+    const postTitle = 'Título del Post Afectado'; // Obtener de la DB
+    const commentAuthorEmail = 'usuario@ejemplo.com'; // Obtener de la DB
+    
+    // 2. Notificación
+    emailService.sendCommentApprovedNotification(postTitle, commentAuthorEmail);
+
+    res.status(200).json({ 
+        message: `Comentario ${commentId} aprobado y notificación enviada.`
+    });
+};

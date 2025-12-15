@@ -20,4 +20,15 @@ router.put('/posts/:id', authMiddleware.verifyToken, postsController.updatePost)
 // DELETE /api/posts/:id - Eliminar post (Requiere Auth)
 router.delete('/posts/:id', authMiddleware.verifyToken, postsController.deletePost);
 
+// Nueva ruta para búsqueda avanzada
+router.get('/search', async (req, res, next) => {
+    try {
+        const searchService = require('../utils/searchService');
+        const results = await searchService.search(req.query);
+        res.json({ results });
+    } catch (error) {
+        next(error);
+    }
+});
+
 module.exports = router;
